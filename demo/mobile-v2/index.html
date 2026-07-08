@@ -1,0 +1,238 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>TripMind AI Mobile Demo</title>
+    <link rel="stylesheet" href="./styles.css?v=20260708-9" />
+  </head>
+  <body>
+    <main class="phone-shell" aria-label="TripMind AI 移动端原型">
+      <section class="screen splash-screen is-active" id="splashScreen">
+        <div class="status-bar">
+          <span>9:41</span>
+          <span>5G  100%</span>
+        </div>
+
+        <div class="splash-content">
+          <div class="brand">
+            <div class="brand-mark">TM</div>
+            <div>
+              <p>TripMind AI</p>
+              <span>游学差旅助手</span>
+            </div>
+          </div>
+
+          <div class="copy-block">
+            <div class="paper-plane" aria-hidden="true">
+              <span></span>
+            </div>
+            <h1>向着阳光出发，让每份游学灵感都变成值得期待的旅程。</h1>
+            <p>整理攻略、记住偏好、对比方案，陪你找到更适合的下一站。</p>
+          </div>
+
+          <div class="travel-photo" aria-hidden="true">
+            <img src="./assets/hero-backpacker-v2.png" alt="" />
+            <div class="photo-fade"></div>
+          </div>
+
+          <button class="depart-btn" id="departBtn" type="button">出发</button>
+        </div>
+      </section>
+
+      <section class="screen app-screen" id="appScreen">
+        <div class="status-bar dark">
+          <span>9:41</span>
+          <span>5G  100%</span>
+        </div>
+
+        <header class="chat-topbar">
+          <button class="icon-btn menu-btn" id="menuBtn" type="button" aria-label="打开菜单">
+            <span></span>
+          </button>
+          <h2 id="pageTitle">TripMind AI</h2>
+          <button class="avatar-btn" type="button" aria-label="用户小林">小林</button>
+        </header>
+
+        <div class="app-body">
+          <div class="tab-content is-active" data-page="chat">
+            <section class="assistant-intro">
+              <div class="intro-mark" aria-hidden="true">
+                <span class="plane-shape"></span>
+                <span class="plane-trail"></span>
+              </div>
+              <div>
+                <h1>我是 TripMind AI</h1>
+                <p>陪你规划游学、对比方案、处理途中变化。</p>
+              </div>
+            </section>
+
+            <section class="suggestion-list" aria-label="推荐提问">
+              <button type="button">新疆 15 天自驾和云南 15 天游学怎么选？</button>
+              <button type="button">预算 1.5 万，怎样安排更稳妥？</button>
+              <button type="button">遇到天气变化，帮我生成 Plan B。</button>
+            </section>
+          </div>
+
+          <div class="tab-content" data-page="knowledge">
+            <section class="knowledge-search">
+              <label>
+                <span>搜索</span>
+                <input type="search" placeholder="搜索资料、偏好、引用来源" />
+              </label>
+            </section>
+
+            <section class="upload-hub">
+              <div>
+                <h3>上传资料</h3>
+                <p>攻略、预算、课程计划、票务截图都可以作为 AI 回答依据。</p>
+              </div>
+              <button id="uploadBtn" type="button">+</button>
+            </section>
+
+            <section class="source-list knowledge-card">
+              <div class="section-head">
+                <h3>资料源</h3>
+                <span>4 个可引用</span>
+              </div>
+              <article>
+                <div class="source-type pdf">PDF</div>
+                <div>
+                  <strong>云南游学攻略.pdf</strong>
+                  <em>攻略 · 12 条知识 · 可用于行程规划</em>
+                </div>
+              </article>
+              <article>
+                <div class="source-type sheet">表</div>
+                <div>
+                  <strong>个人预算计划.xlsx</strong>
+                  <em>预算 · 识别预算上限 15000 元</em>
+                </div>
+              </article>
+              <article>
+                <div class="source-type img">图</div>
+                <div>
+                  <strong>课程安排截图</strong>
+                  <em>课程 · 每天 2 小时学习窗口</em>
+                </div>
+              </article>
+              <article>
+                <div class="source-type note">记</div>
+                <div>
+                  <strong>小林的行程记忆</strong>
+                  <em>偏好 · 饮食、晕车、节奏限制</em>
+                </div>
+              </article>
+            </section>
+
+            <section class="memory-groups knowledge-card">
+              <div class="section-head">
+                <h3>AI 记忆</h3>
+                <span>按主题折叠</span>
+              </div>
+              <details open>
+                <summary>
+                  <strong>预算与时间</strong>
+                  <span>2 条</span>
+                </summary>
+                <ul>
+                  <li>预算上限 15000 元</li>
+                  <li>每天保留 2 小时学习时间</li>
+                </ul>
+              </details>
+              <details>
+                <summary>
+                  <strong>饮食与身体限制</strong>
+                  <span>2 条</span>
+                </summary>
+                <ul>
+                  <li>不吃牛羊肉</li>
+                  <li>容易晕车，避免长时间山路和高强度转场</li>
+                </ul>
+              </details>
+              <details>
+                <summary>
+                  <strong>目的地偏好</strong>
+                  <span>2 条</span>
+                </summary>
+                <ul>
+                  <li>希望兼顾自然风景和学习安排</li>
+                  <li>更偏好城市交通可控的目的地</li>
+                </ul>
+              </details>
+              <details>
+                <summary>
+                  <strong>风险偏好</strong>
+                  <span>1 条</span>
+                </summary>
+                <ul>
+                  <li>遇到天气或交通变化时优先保留学习节奏</li>
+                </ul>
+              </details>
+            </section>
+          </div>
+        </div>
+
+        <footer class="chat-dock">
+          <div class="mode-strip" aria-label="快捷模式">
+            <button type="button" data-mode="行程规划">行程规划</button>
+            <button type="button" data-mode="Plan B">Plan B</button>
+            <button type="button" data-mode="知识库检索">知识库</button>
+          </div>
+
+          <div class="composer">
+            <button class="voice-btn" type="button" aria-label="语音输入">语音</button>
+            <textarea
+              id="questionInput"
+              aria-label="输入你的旅行问题"
+              placeholder="输入你的旅行问题..."
+              rows="1"
+            ></textarea>
+            <div class="voice-panel" aria-hidden="true">
+              <button class="keyboard-btn" type="button" aria-label="返回键盘">键盘</button>
+              <button class="hold-talk" type="button">按住说话</button>
+              <button class="round-btn voice-close-btn" type="button" aria-label="关闭语音输入">×</button>
+            </div>
+            <button class="round-btn attach-btn" type="button" aria-label="上传资料">+</button>
+            <button class="send-btn" id="askBtn" type="button" disabled>发送</button>
+          </div>
+
+          <div class="attach-panel" id="attachPanel" hidden>
+            <button type="button">
+              <span class="attach-icon camera-icon"></span>
+              <strong>拍照</strong>
+            </button>
+            <button type="button">
+              <span class="attach-icon album-icon"></span>
+              <strong>相册</strong>
+            </button>
+            <button type="button">
+              <span class="attach-icon file-icon"></span>
+              <strong>本地文件</strong>
+            </button>
+          </div>
+          <p>内容由 TripMind AI 生成</p>
+        </footer>
+
+        <div class="drawer-backdrop" id="drawerBackdrop" hidden></div>
+        <aside class="side-drawer" id="sideDrawer" aria-label="侧边菜单" aria-hidden="true">
+          <div class="drawer-head">
+            <strong>TripMind AI</strong>
+            <button class="icon-btn" id="closeDrawerBtn" type="button" aria-label="关闭菜单">×</button>
+          </div>
+          <button class="drawer-item is-active" type="button" data-tab="chat">
+            <span class="tab-icon chat-icon"></span>
+            <strong>AI问答</strong>
+          </button>
+          <button class="drawer-item" type="button" data-tab="knowledge">
+            <span class="tab-icon book-icon"></span>
+            <strong>知识库</strong>
+          </button>
+        </aside>
+      </section>
+    </main>
+
+    <div class="toast" id="toast" role="status" aria-live="polite"></div>
+    <script src="./script.js?v=20260708-9"></script>
+  </body>
+</html>

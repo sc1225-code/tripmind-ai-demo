@@ -1,0 +1,465 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>TripMind AI Demo</title>
+    <link rel="stylesheet" href="./styles.css" />
+  </head>
+  <body>
+    <div class="app-shell">
+      <header class="topbar">
+        <div class="brand-block">
+          <div class="brand-mark">TM</div>
+          <div>
+            <div class="brand-name">TripMind AI</div>
+            <div class="brand-subtitle">复杂差旅决策工作台</div>
+          </div>
+        </div>
+
+        <div class="task-pill">
+          <span class="label">当前任务</span>
+          <strong>新疆 15 天自驾 vs 云南 15 天游学</strong>
+        </div>
+
+        <button class="weather-alert" id="weatherAlert" type="button" aria-label="查看大理暴雨风险">
+          <span class="alert-dot"></span>
+          <span>Day 5 大理暴雨风险</span>
+        </button>
+
+        <div class="profile-chip">
+          <span>小林</span>
+          <strong>15 天计划</strong>
+        </div>
+      </header>
+
+      <div class="workspace">
+        <aside class="flow-nav" aria-label="流程导航">
+          <div class="nav-title">规划流程</div>
+          <button class="nav-item is-active" type="button" data-target="step-intake">
+            <span class="step-index">1</span>
+            <span>
+              <strong>输入需求</strong>
+              <em>识别复杂问题</em>
+            </span>
+          </button>
+          <button class="nav-item" type="button" data-target="step-upload">
+            <span class="step-index">2</span>
+            <span>
+              <strong>上传资料</strong>
+              <em>整理碎片信息</em>
+            </span>
+          </button>
+          <button class="nav-item" type="button" data-target="step-memory">
+            <span class="step-index">3</span>
+            <span>
+              <strong>确认记忆</strong>
+              <em>保存用户约束</em>
+            </span>
+          </button>
+          <button class="nav-item" type="button" data-target="step-compare">
+            <span class="step-index">4</span>
+            <span>
+              <strong>方案对比</strong>
+              <em>生成推荐结论</em>
+            </span>
+          </button>
+          <button class="nav-item" type="button" data-target="step-plan">
+            <span class="step-index">5</span>
+            <span>
+              <strong>行程确认</strong>
+              <em>形成概要计划</em>
+            </span>
+          </button>
+          <button class="nav-item" type="button" data-target="step-planb">
+            <span class="step-index">6</span>
+            <span>
+              <strong>Plan B</strong>
+              <em>动态调整</em>
+            </span>
+          </button>
+        </aside>
+
+        <main class="main-panel">
+          <section class="hero-strip" aria-label="TripMind AI 工作台概览">
+            <div>
+              <p class="eyebrow">AI Travel Decision Copilot</p>
+              <h1>把复杂旅行纠结，变成可解释的决策方案。</h1>
+              <p>
+                TripMind AI 会整理上传资料、提取长期记忆、对比多套方案，并在途中变化时生成执行前确认清单。
+              </p>
+            </div>
+            <div class="route-visual" aria-hidden="true">
+              <div class="route-card route-card-a">
+                <span>新疆自驾</span>
+                <strong>68</strong>
+              </div>
+              <div class="route-line"></div>
+              <div class="route-card route-card-b">
+                <span>云南游学</span>
+                <strong>84</strong>
+              </div>
+            </div>
+          </section>
+
+          <section class="step-section" id="step-intake">
+            <div class="section-heading">
+              <div>
+                <p class="eyebrow">Step 1</p>
+                <h2>复杂需求输入</h2>
+              </div>
+              <span class="status-badge pending" id="intakeStatus">待分析</span>
+            </div>
+            <div class="input-card">
+              <label for="tripPrompt">用自然语言描述你的行程纠结</label>
+              <textarea id="tripPrompt">我在新疆 15 天自驾和云南 15 天游学之间纠结，预算 1.5 万，不吃牛羊肉，容易晕车，希望每天保留 2 小时学习时间，帮我分析哪个更适合。</textarea>
+              <div class="action-row">
+                <button class="primary-btn" id="analyzeBtn" type="button">开始分析</button>
+                <button class="ghost-btn" id="resetPromptBtn" type="button">使用示例需求</button>
+              </div>
+            </div>
+
+            <div class="parsed-task is-muted" id="parsedTask">
+              <div class="mini-header">
+                <h3>AI 已识别的任务信息</h3>
+                <span>等待分析</span>
+              </div>
+              <div class="task-grid">
+                <div><span>方案 A</span><strong>新疆 15 天自驾</strong></div>
+                <div><span>方案 B</span><strong>云南 15 天游学</strong></div>
+                <div><span>预算</span><strong>15000 元</strong></div>
+                <div><span>饮食限制</span><strong>不吃牛羊肉</strong></div>
+                <div><span>体力限制</span><strong>容易晕车</strong></div>
+                <div><span>学习目标</span><strong>每天 2 小时</strong></div>
+              </div>
+              <div class="missing-info">
+                <strong>待补充</strong>
+                <span>出发城市</span>
+                <span>具体日期</span>
+                <span>同行人数</span>
+              </div>
+            </div>
+          </section>
+
+          <section class="step-section" id="step-upload">
+            <div class="section-heading">
+              <div>
+                <p class="eyebrow">Step 2</p>
+                <h2>资料上传与解析</h2>
+              </div>
+              <span class="status-badge pending" id="uploadStatus">待上传</span>
+            </div>
+
+            <div class="upload-zone" id="uploadZone">
+              <input id="fileInput" type="file" multiple />
+              <div class="upload-icon" aria-hidden="true"></div>
+              <strong>拖拽文件到这里，或点击上传</strong>
+              <span>支持 PDF / DOCX / XLSX / TXT。Demo 会使用示例文件模拟 AI 解析。</span>
+            </div>
+
+            <div class="file-list" id="fileList" aria-live="polite">
+              <div class="file-row"><span>新疆自驾攻略.pdf</span><strong>示例文件</strong></div>
+              <div class="file-row"><span>云南游学攻略.pdf</span><strong>示例文件</strong></div>
+              <div class="file-row"><span>个人预算计划.xlsx</span><strong>示例文件</strong></div>
+              <div class="file-row"><span>学习计划.docx</span><strong>示例文件</strong></div>
+            </div>
+
+            <div class="knowledge-card is-muted" id="knowledgeCard">
+              <div class="mini-header">
+                <h3>AI 解析出的知识条目</h3>
+                <span>等待解析</span>
+              </div>
+              <div class="knowledge-table">
+                <div class="table-head">
+                  <span>类型</span>
+                  <span>内容</span>
+                  <span>来源</span>
+                </div>
+                <button class="knowledge-row" type="button">
+                  <span>预算</span>
+                  <strong>新疆租车与油费占比较高，预算波动更大</strong>
+                  <em>新疆攻略</em>
+                </button>
+                <button class="knowledge-row" type="button">
+                  <span>风险</span>
+                  <strong>新疆长距离自驾对晕车用户不友好</strong>
+                  <em>新疆攻略</em>
+                </button>
+                <button class="knowledge-row" type="button">
+                  <span>学习</span>
+                  <strong>云南游学更容易保留固定学习时间</strong>
+                  <em>学习计划</em>
+                </button>
+                <button class="knowledge-row" type="button">
+                  <span>天气</span>
+                  <strong>云南雨季需准备室内 Plan B</strong>
+                  <em>云南攻略</em>
+                </button>
+              </div>
+            </div>
+          </section>
+
+          <section class="step-section" id="step-memory">
+            <div class="section-heading">
+              <div>
+                <p class="eyebrow">Step 3</p>
+                <h2>记忆卡片确认</h2>
+              </div>
+              <span class="status-badge pending" id="memoryStatus">待确认</span>
+            </div>
+
+            <div class="memory-grid" id="memoryGrid">
+              <article class="memory-card" data-key="预算上限">
+                <div>
+                  <span>预算上限</span>
+                  <strong contenteditable="true">15000 元</strong>
+                </div>
+                <select aria-label="预算上限记忆类型">
+                  <option>本次行程</option>
+                  <option>长期偏好</option>
+                </select>
+                <button type="button" class="text-btn remove-memory">删除</button>
+              </article>
+              <article class="memory-card" data-key="饮食限制">
+                <div>
+                  <span>饮食限制</span>
+                  <strong contenteditable="true">不吃牛羊肉</strong>
+                </div>
+                <select aria-label="饮食限制记忆类型">
+                  <option>长期偏好</option>
+                  <option>本次行程</option>
+                </select>
+                <button type="button" class="text-btn remove-memory">删除</button>
+              </article>
+              <article class="memory-card" data-key="体力限制">
+                <div>
+                  <span>体力限制</span>
+                  <strong contenteditable="true">容易晕车</strong>
+                </div>
+                <select aria-label="体力限制记忆类型">
+                  <option>长期偏好</option>
+                  <option>本次行程</option>
+                </select>
+                <button type="button" class="text-btn remove-memory">删除</button>
+              </article>
+              <article class="memory-card" data-key="学习目标">
+                <div>
+                  <span>学习目标</span>
+                  <strong contenteditable="true">每天 2 小时</strong>
+                </div>
+                <select aria-label="学习目标记忆类型">
+                  <option>本次行程</option>
+                  <option>长期偏好</option>
+                </select>
+                <button type="button" class="text-btn remove-memory">删除</button>
+              </article>
+            </div>
+            <div class="action-row">
+              <button class="primary-btn" id="confirmMemoryBtn" type="button">确认用于本次分析</button>
+              <button class="ghost-btn" id="restoreMemoryBtn" type="button">恢复默认记忆</button>
+            </div>
+          </section>
+
+          <section class="step-section" id="step-compare">
+            <div class="section-heading">
+              <div>
+                <p class="eyebrow">Step 4</p>
+                <h2>多方案对比报告</h2>
+              </div>
+              <span class="status-badge done">已生成</span>
+            </div>
+
+            <div class="recommendation-card">
+              <div>
+                <p class="eyebrow">推荐结论</p>
+                <h3>TripMind AI 推荐：云南 15 天游学</h3>
+                <p>更符合预算、学习目标和体力限制；新疆自驾体验更强，但长距离移动对晕车用户不友好。</p>
+              </div>
+              <div class="score-ring">
+                <span>84</span>
+                <em>综合匹配</em>
+              </div>
+            </div>
+
+            <div class="compare-table">
+              <div class="compare-head">
+                <span>维度</span>
+                <span>新疆 15 天自驾</span>
+                <span>云南 15 天游学</span>
+              </div>
+              <button type="button" class="compare-row">
+                <span>预算匹配</span>
+                <strong>中，租车油费高</strong>
+                <strong>高，住宿交通更可控</strong>
+              </button>
+              <button type="button" class="compare-row">
+                <span>体力压力</span>
+                <strong>高，移动距离长</strong>
+                <strong>中，节奏灵活</strong>
+              </button>
+              <button type="button" class="compare-row">
+                <span>学习目标</span>
+                <strong>低，难固定学习</strong>
+                <strong>高，易安排学习块</strong>
+              </button>
+              <button type="button" class="compare-row">
+                <span>饮食适配</span>
+                <strong>中，限制较多</strong>
+                <strong>高，选择更多</strong>
+              </button>
+              <button type="button" class="compare-row">
+                <span>综合评分</span>
+                <strong>68/100</strong>
+                <strong>84/100</strong>
+              </button>
+            </div>
+
+            <div class="two-col">
+              <div class="insight-box">
+                <h3>推荐 + 备选</h3>
+                <p><strong>推荐方案：</strong>云南 15 天游学。</p>
+                <p><strong>备选方案：</strong>如果更重视自然景观冲击力，并能接受高强度交通，可选择新疆 15 天自驾。</p>
+                <p><strong>不建议条件：</strong>近期晕车严重或预算不能超过 1.5 万时，不建议选择新疆自驾。</p>
+              </div>
+              <div class="insight-box">
+                <h3>可信说明</h3>
+                <p><strong>信息来源：</strong>用户输入、上传攻略、预算计划、天气模拟、路线距离估算。</p>
+                <p><strong>置信度：</strong>中高。</p>
+                <p><strong>不确定项：</strong>实时机票价格、住宿波动、课程名额、景点临时政策。</p>
+              </div>
+            </div>
+          </section>
+
+          <section class="step-section" id="step-plan">
+            <div class="section-heading">
+              <div>
+                <p class="eyebrow">Step 5</p>
+                <h2>推荐行程概要</h2>
+              </div>
+              <span class="status-badge pending" id="planStatus">待确认</span>
+            </div>
+
+            <div class="timeline">
+              <div class="timeline-item"><span>Day 1-2</span><strong>昆明抵达与适应</strong><em>城市轻探索，确认学习节奏</em></div>
+              <div class="timeline-item"><span>Day 3-6</span><strong>大理游学与轻户外</strong><em>课程学习、洱海低强度活动</em></div>
+              <div class="timeline-item"><span>Day 7-10</span><strong>丽江文化体验</strong><em>文化参访，晚上保留学习时间</em></div>
+              <div class="timeline-item"><span>Day 11-13</span><strong>香格里拉轻路线</strong><em>根据体力选择低海拔备选</em></div>
+              <div class="timeline-item"><span>Day 14-15</span><strong>昆明复盘与返程</strong><em>预算收口，整理学习成果</em></div>
+            </div>
+
+            <div class="action-row">
+              <button class="primary-btn" id="confirmPlanBtn" type="button">确认使用该方案</button>
+              <button class="ghost-btn" id="relaxPlanBtn" type="button">调整节奏</button>
+              <button class="ghost-btn" id="budgetPlanBtn" type="button">降低预算</button>
+            </div>
+          </section>
+
+          <section class="step-section planb-section" id="step-planb">
+            <div class="section-heading">
+              <div>
+                <p class="eyebrow">Step 6</p>
+                <h2>突发事件与 Plan B</h2>
+              </div>
+              <span class="status-badge warning">需要确认</span>
+            </div>
+
+            <div class="event-card">
+              <div>
+                <p class="eyebrow">突发事件提醒</p>
+                <h3>Day 5 大理出现持续暴雨，原计划洱海骑行不建议进行。</h3>
+              </div>
+              <div class="event-impact">
+                <span>影响时间：Day 5 下午</span>
+                <span>安全风险升高</span>
+                <span>预算影响可控</span>
+              </div>
+            </div>
+
+            <div class="planb-grid">
+              <div class="planb-card">
+                <h3>TripMind AI 推荐 Plan B</h3>
+                <ul>
+                  <li><strong>上午：</strong>保留原课程/学习安排</li>
+                  <li><strong>下午：</strong>非遗体验馆 + 室内咖啡馆学习</li>
+                  <li><strong>晚上：</strong>根据天气决定是否短途散步</li>
+                </ul>
+                <p>推荐理由：符合轻节奏、学习目标和预算约束，且减少雨天户外安全风险。</p>
+              </div>
+              <div class="planb-card">
+                <h3>备选方案</h3>
+                <ul>
+                  <li>云南省博物馆 + 课程复盘</li>
+                  <li>民宿内学习半日 + 晚间轻餐</li>
+                </ul>
+                <p>如用户希望降低移动成本，可选择完全室内方案。</p>
+              </div>
+            </div>
+
+            <div class="confirm-list">
+              <h3>执行前确认清单</h3>
+              <label><input type="checkbox" /> 取消洱海骑行预约</label>
+              <label><input type="checkbox" /> 新增非遗体验预约</label>
+              <label><input type="checkbox" /> 调整下午打车时间</label>
+              <label><input type="checkbox" /> 通知同行人行程变化</label>
+              <label><input type="checkbox" /> 更新 Day 5 预算</label>
+              <div class="action-row">
+                <button class="primary-btn" id="confirmPlanBBtn" type="button">确认生成调整方案</button>
+                <button class="ghost-btn" type="button">暂不处理</button>
+              </div>
+            </div>
+          </section>
+        </main>
+
+        <aside class="context-panel" aria-label="当前上下文">
+          <div class="context-card">
+            <div class="mini-header">
+              <h3>当前记忆</h3>
+              <span id="memoryCount">4 项</span>
+            </div>
+            <ul class="context-list" id="contextMemory">
+              <li>预算 15000 元</li>
+              <li>不吃牛羊肉</li>
+              <li>容易晕车</li>
+              <li>每天学习 2 小时</li>
+            </ul>
+          </div>
+
+          <div class="context-card">
+            <div class="mini-header">
+              <h3>数据来源</h3>
+              <span>4 个文件</span>
+            </div>
+            <ul class="context-list">
+              <li>用户输入</li>
+              <li>新疆自驾攻略.pdf</li>
+              <li>云南游学攻略.pdf</li>
+              <li>个人预算计划.xlsx</li>
+            </ul>
+          </div>
+
+          <div class="context-card trust-card">
+            <h3>可信状态</h3>
+            <div class="trust-meter"><span style="width: 78%"></span></div>
+            <p>置信度：中高</p>
+            <p>不确定项：实时价格、课程名额、临时政策、天气变化</p>
+          </div>
+
+          <div class="context-card">
+            <div class="mini-header">
+              <h3>待确认事项</h3>
+              <span id="todoCount">3 项</span>
+            </div>
+            <ul class="context-list" id="todoList">
+              <li>记忆卡片待确认</li>
+              <li>推荐行程待确认</li>
+              <li>Plan B 操作待确认</li>
+            </ul>
+          </div>
+        </aside>
+      </div>
+    </div>
+
+    <div class="toast" id="toast" role="status" aria-live="polite"></div>
+    <script src="./script.js"></script>
+  </body>
+</html>

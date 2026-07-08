@@ -1,0 +1,219 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>TripMind AI Mobile Demo</title>
+    <link rel="stylesheet" href="./styles.css" />
+  </head>
+  <body>
+    <main class="phone-shell" aria-label="TripMind AI 移动端原型">
+      <section class="screen splash-screen is-active" id="splashScreen">
+        <div class="status-bar">
+          <span>9:41</span>
+          <span>5G  100%</span>
+        </div>
+
+        <div class="splash-content">
+          <div class="brand">
+            <div class="brand-mark">TM</div>
+            <div>
+              <p>TripMind AI</p>
+              <span>游学差旅助手</span>
+            </div>
+          </div>
+
+          <div class="travel-card" aria-hidden="true">
+            <div class="sun"></div>
+            <div class="path">
+              <span></span>
+              <span></span>
+              <span></span>
+            </div>
+            <div class="mini-note note-a">
+              <strong>知识库</strong>
+              <span>攻略已整理</span>
+            </div>
+            <div class="mini-note note-b">
+              <strong>对比</strong>
+              <span>云南 84</span>
+            </div>
+          </div>
+
+          <div class="copy-block">
+            <h1>向着阳光出发，让每份游学灵感都变成值得期待的旅程。</h1>
+            <p>整理攻略、记住偏好、对比方案，陪你找到更适合的下一站。</p>
+          </div>
+
+          <button class="depart-btn" id="departBtn" type="button">出发</button>
+        </div>
+      </section>
+
+      <section class="screen app-screen" id="appScreen">
+        <div class="status-bar dark">
+          <span>9:41</span>
+          <span>5G  100%</span>
+        </div>
+
+        <header class="app-header">
+          <div>
+            <p>TripMind AI</p>
+            <h2 id="pageTitle">今天想规划什么行程？</h2>
+          </div>
+          <button class="avatar-btn" type="button" aria-label="用户小林">小林</button>
+        </header>
+
+        <div class="tab-content is-active" data-page="chat">
+          <section class="prompt-card">
+            <span>试着这样问我</span>
+            <p>我在新疆 15 天自驾和云南 15 天游学之间纠结，预算 1.5 万，帮我分析。</p>
+          </section>
+
+          <section class="input-panel">
+            <textarea id="questionInput" aria-label="输入你的旅行问题">我在新疆 15 天自驾和云南 15 天游学之间纠结，预算 1.5 万，不吃牛羊肉，容易晕车，希望每天保留 2 小时学习时间，帮我分析哪个更适合。</textarea>
+            <button class="primary-action" id="askBtn" type="button">让 AI 分析</button>
+          </section>
+
+          <section class="quick-actions">
+            <h3>快捷入口</h3>
+            <div class="quick-grid">
+              <button type="button" data-tab="knowledge">上传攻略</button>
+              <button type="button" data-tab="compare">新建对比</button>
+            </div>
+          </section>
+
+          <section class="memory-preview">
+            <div class="section-title">
+              <h3>最近记忆</h3>
+              <button type="button" data-tab="knowledge">管理</button>
+            </div>
+            <ul>
+              <li><span>预算上限</span><strong>15000 元</strong></li>
+              <li><span>饮食限制</span><strong>不吃牛羊肉</strong></li>
+              <li><span>学习目标</span><strong>每天 2 小时</strong></li>
+            </ul>
+          </section>
+        </div>
+
+        <div class="tab-content" data-page="knowledge">
+          <section class="module-hero">
+            <span>游学知识库</span>
+            <h2>把零散攻略整理成可追溯的决策依据。</h2>
+          </section>
+
+          <button class="upload-card" id="uploadBtn" type="button">
+            <span class="upload-plus">+</span>
+            <strong>上传攻略 / 预算 / 课程计划</strong>
+            <em>PDF、截图、表格和文字笔记都可以先放进来</em>
+          </button>
+
+          <section class="source-list">
+            <h3>已整理资料</h3>
+            <article>
+              <span>攻略</span>
+              <strong>云南游学攻略.pdf</strong>
+              <em>提取 12 条知识</em>
+            </article>
+            <article>
+              <span>预算</span>
+              <strong>个人预算计划.xlsx</strong>
+              <em>识别预算上限 15000 元</em>
+            </article>
+            <article>
+              <span>偏好</span>
+              <strong>小林的行程记忆</strong>
+              <em>不吃牛羊肉、容易晕车</em>
+            </article>
+          </section>
+        </div>
+
+        <div class="tab-content" data-page="compare">
+          <section class="module-hero compare-hero">
+            <span>复杂对比决策</span>
+            <h2>新疆自驾 vs 云南游学，哪一个更适合你？</h2>
+          </section>
+
+          <section class="decision-card">
+            <div class="decision-header">
+              <div>
+                <span>TripMind AI 推荐</span>
+                <h3>云南 15 天游学</h3>
+              </div>
+              <strong>84</strong>
+            </div>
+            <p>更符合预算、学习目标和体力限制；新疆自驾体验更强，但长距离移动对晕车用户不友好。</p>
+          </section>
+
+          <section class="compare-list">
+            <article>
+              <span>预算匹配</span>
+              <strong>云南更可控</strong>
+              <em>住宿与城市交通弹性更高</em>
+            </article>
+            <article>
+              <span>学习目标</span>
+              <strong>云南更容易保留学习时间</strong>
+              <em>节奏较轻，适合每天 2 小时学习</em>
+            </article>
+            <article>
+              <span>备选条件</span>
+              <strong>想要强自然景观可选新疆</strong>
+              <em>需接受高强度交通与更高预算波动</em>
+            </article>
+          </section>
+        </div>
+
+        <div class="tab-content" data-page="planb">
+          <section class="module-hero planb-hero">
+            <span>Plan B</span>
+            <h2>途中遇到变化，先看到影响，再确认调整。</h2>
+          </section>
+
+          <section class="alert-card">
+            <span>突发提醒</span>
+            <h3>Day 5 大理持续暴雨，洱海骑行不建议进行。</h3>
+            <p>影响时间：下午；预算影响：可控；安全风险：升高。</p>
+          </section>
+
+          <section class="plan-card">
+            <h3>推荐替代方案</h3>
+            <ul>
+              <li>上午保留原课程/学习安排</li>
+              <li>下午改为非遗体验馆 + 室内咖啡馆学习</li>
+              <li>晚上根据天气决定是否短途散步</li>
+            </ul>
+          </section>
+
+          <section class="check-list">
+            <h3>执行前确认</h3>
+            <label><input type="checkbox" /> 取消洱海骑行预约</label>
+            <label><input type="checkbox" /> 新增非遗体验预约</label>
+            <label><input type="checkbox" /> 调整下午打车时间</label>
+          </section>
+        </div>
+
+        <nav class="bottom-tabs" aria-label="核心模块导航">
+          <button class="tab-btn is-active" type="button" data-tab="chat">
+            <span class="tab-icon chat-icon"></span>
+            <strong>AI问答</strong>
+          </button>
+          <button class="tab-btn" type="button" data-tab="knowledge">
+            <span class="tab-icon book-icon"></span>
+            <strong>知识库</strong>
+          </button>
+          <button class="tab-btn" type="button" data-tab="compare">
+            <span class="tab-icon compare-icon"></span>
+            <strong>行程对比</strong>
+          </button>
+          <button class="tab-btn" type="button" data-tab="planb">
+            <span class="tab-icon planb-icon"></span>
+            <strong>Plan B</strong>
+          </button>
+        </nav>
+      </section>
+    </main>
+
+    <div class="toast" id="toast" role="status" aria-live="polite"></div>
+    <script src="./script.js"></script>
+  </body>
+</html>
