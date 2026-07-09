@@ -25,8 +25,12 @@
 | AI 输出样例 | `docs/07-AI输出样例设计.md` | 当前行程规划、资料源、长期记忆和 Plan B 输出样例 |
 | AI 结果卡片 | `docs/08-AI结果卡片与页面呈现设计.md` | 当前 AI 输出在移动端的卡片拆分、折叠规则和交互呈现 |
 | Prompt 与数据流 | `docs/09-Prompt设计与AI数据流.md` | 当前 AI 数据流、核心 Prompt 设计、防幻觉机制和验证方案 |
+| 核心功能 PRD | `docs/10-TripMind AI核心功能PRD.md` | 当前可提交的核心功能 PRD 主文档 |
+| 页面原型提交版 | `docs/11-页面原型提交版.md` | 当前可提交的页面原型文档，含线框图和 AI Coding 原型截图 |
+| 设计阐述 | `docs/12-设计阐述.md` | 当前可提交的独立观点说明，含设计理由、能力边界和未来演进 |
 | Demo 迭代目录 | `demo/` | 当前移动端 Demo 各版本 |
 | 当前推荐 Demo | `demo/mobile-v2/` | 当前主推移动端版本，首页进入 AI 问答主入口，知识库在左侧菜单中管理 |
+| GitHub Pages 部署目录 | `deploy/github-pages/` | 可直接上传到 GitHub Pages 仓库根目录的静态 Demo 文件 |
 | 早期移动端 Demo | `demo/mobile-v1/` | 第一版移动端 Demo，保留用于对比 |
 | 旧 Web 归档 | `archive/web-workbench-legacy/` | 旧 Web 工作台线框和 Demo |
 
