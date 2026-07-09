@@ -19,7 +19,7 @@ python3 -m http.server 5175 --directory deploy/github-pages
 然后访问：
 
 ```text
-http://localhost:5175/
+https://sc1225-code.github.io/tripmind-ai-demo/deploy/github-pages/?v=20260709-2
 ```
 
 ## 主要目录
