@@ -48,12 +48,17 @@ function switchTab(tabName) {
 
 function setAttachPanel(isOpen) {
   attachPanel.hidden = !isOpen;
+  document.querySelector(".attach-btn").setAttribute("aria-expanded", String(isOpen));
 }
 
-function setVoiceMode(isVoice) {
+function blurQuestionInput() {
+  if (document.activeElement === questionInput) questionInput.blur();
+}
+
+function setVoiceMode(isVoice, shouldFocusInput = false) {
   composer.classList.toggle("is-voice", isVoice);
   setAttachPanel(false);
-  if (!isVoice) questionInput.focus();
+  if (!isVoice && shouldFocusInput) questionInput.focus();
 }
 
 function setMode(modeName) {
@@ -92,12 +97,13 @@ document.querySelector("#closeDrawerBtn").addEventListener("click", () => setDra
 drawerBackdrop.addEventListener("click", () => setDrawer(false));
 
 document.querySelectorAll(".suggestion-list button").forEach((button) => {
-  button.addEventListener("click", () => {
+  button.addEventListener("click", (event) => {
+    event.preventDefault();
     questionInput.value = button.textContent;
     resizeQuestionInput();
     syncSendButton();
     autoDetectMode(questionInput.value);
-    questionInput.focus();
+    blurQuestionInput();
   });
 });
 
@@ -129,6 +135,7 @@ function renderResult(question, mode) {
   syncSendButton();
   setAttachPanel(false);
   setVoiceMode(false);
+  blurQuestionInput();
   bindResultActions();
   scrollResultsToTop();
 }
@@ -297,7 +304,7 @@ function fillQuestion(value) {
   resizeQuestionInput();
   syncSendButton();
   autoDetectMode(value);
-  questionInput.focus();
+  blurQuestionInput();
 }
 
 function bindResultActions() {
@@ -329,12 +336,15 @@ modeButtons.forEach((button) => {
 });
 
 document.querySelector(".voice-btn").addEventListener("click", () => setVoiceMode(true));
-document.querySelector(".keyboard-btn").addEventListener("click", () => setVoiceMode(false));
+document.querySelector(".keyboard-btn").addEventListener("click", () => setVoiceMode(false, true));
 document.querySelector(".voice-close-btn").addEventListener("click", () => setVoiceMode(false));
 
-document.querySelector(".attach-btn").addEventListener("click", () => {
+document.querySelector(".attach-btn").addEventListener("click", (event) => {
+  event.preventDefault();
+  const shouldOpen = attachPanel.hidden;
   setVoiceMode(false);
-  setAttachPanel(attachPanel.hidden);
+  setAttachPanel(shouldOpen);
+  blurQuestionInput();
 });
 
 attachPanel.querySelectorAll("button").forEach((button) => {
@@ -344,10 +354,12 @@ attachPanel.querySelectorAll("button").forEach((button) => {
   });
 });
 
-askBtn.addEventListener("click", () => {
+askBtn.addEventListener("click", (event) => {
+  event.preventDefault();
   if (askBtn.disabled) return;
   const question = questionInput.value.trim();
   const activeMode = getActiveMode();
+  blurQuestionInput();
   renderResult(question, activeMode);
   showToast("已生成 AI 结果卡片。");
 });
