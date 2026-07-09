@@ -4,7 +4,7 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>TripMind AI Mobile Demo</title>
-    <link rel="stylesheet" href="./styles.css?v=20260708-9" />
+    <link rel="stylesheet" href="./styles.css?v=20260708-10" />
   </head>
   <body>
     <main class="phone-shell" aria-label="TripMind AI 移动端原型">
@@ -72,6 +72,8 @@
               <button type="button">预算 1.5 万，怎样安排更稳妥？</button>
               <button type="button">遇到天气变化，帮我生成 Plan B。</button>
             </section>
+
+            <section class="result-stream" id="resultStream" aria-live="polite"></section>
           </div>
 
           <div class="tab-content" data-page="knowledge">
@@ -170,6 +172,21 @@
                 </ul>
               </details>
             </section>
+
+            <section class="memory-confirm knowledge-card" id="memoryConfirmCard" hidden>
+              <div class="section-head">
+                <h3>发现可保存的 AI 记忆</h3>
+                <span>待确认</span>
+              </div>
+              <label><input type="checkbox" /> 总预算不超过 15000 元</label>
+              <label><input type="checkbox" /> 每天保留 2 小时学习时间</label>
+              <label><input type="checkbox" /> 容易晕车，避免高强度转场</label>
+              <label><input type="checkbox" /> 偏好慢节奏和可调整路线</label>
+              <div class="card-actions">
+                <button class="primary-action" type="button" id="saveMemoryBtn">全部保存</button>
+                <button class="ghost-action" type="button">逐条确认</button>
+              </div>
+            </section>
           </div>
         </div>
 
@@ -233,6 +250,6 @@
     </main>
 
     <div class="toast" id="toast" role="status" aria-live="polite"></div>
-    <script src="./script.js?v=20260708-9"></script>
+    <script src="./script.js?v=20260708-10"></script>
   </body>
 </html>

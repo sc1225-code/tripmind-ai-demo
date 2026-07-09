@@ -514,6 +514,372 @@ p {
   box-shadow: 0 6px 18px rgba(24, 37, 32, 0.03);
 }
 
+.tab-content.has-results .assistant-intro,
+.tab-content.has-results .suggestion-list {
+  display: none;
+}
+
+.result-stream {
+  display: grid;
+  gap: 12px;
+  padding: 10px 0 8px;
+}
+
+.user-bubble {
+  justify-self: end;
+  max-width: 86%;
+  padding: 12px 14px;
+  border-radius: 18px 18px 6px 18px;
+  background: var(--green);
+  color: #fff;
+  font-size: 14px;
+  font-weight: 680;
+  line-height: 1.45;
+}
+
+.ai-card,
+.ai-strip {
+  border: 1px solid var(--line);
+  border-radius: 18px;
+  background: #fff;
+  box-shadow: 0 10px 26px rgba(24, 37, 32, 0.05);
+}
+
+.ai-strip {
+  padding: 10px 12px;
+  color: var(--green);
+  font-size: 13px;
+  font-weight: 760;
+  line-height: 1.45;
+}
+
+.ai-card {
+  overflow: hidden;
+  padding: 14px;
+}
+
+.ai-card h3 {
+  margin: 0 0 10px;
+  font-size: 16px;
+  line-height: 1.3;
+}
+
+.ai-card p {
+  margin: 0;
+  color: var(--muted);
+  font-size: 13px;
+  line-height: 1.55;
+}
+
+.ai-card strong {
+  color: var(--ink);
+}
+
+.confidence {
+  display: inline-flex;
+  align-items: center;
+  min-height: 26px;
+  margin-top: 12px;
+  padding: 0 10px;
+  border-radius: 99px;
+  background: var(--green-soft);
+  color: var(--green);
+  font-size: 12px;
+  font-weight: 820;
+}
+
+.compare-list,
+.compare-carousel,
+.option-list,
+.check-list,
+.source-summary {
+  display: grid;
+  gap: 10px;
+  margin-top: 10px;
+}
+
+.option-item,
+.source-summary,
+.cost-grid {
+  padding: 11px;
+  border: 1px solid #edf1ee;
+  border-radius: 14px;
+  background: #f8fbf9;
+}
+
+.compare-item header,
+.option-item header {
+  display: flex;
+  justify-content: space-between;
+  gap: 10px;
+  align-items: center;
+  margin-bottom: 7px;
+}
+
+.compare-item h4,
+.option-item h4 {
+  margin: 0;
+  font-size: 14px;
+}
+
+.fit-tag {
+  flex: 0 0 auto;
+  padding: 4px 8px;
+  border-radius: 99px;
+  background: var(--sun-soft);
+  color: #7b541d;
+  font-size: 11px;
+  font-weight: 820;
+}
+
+.compare-item p + p {
+  margin-top: 4px;
+}
+
+.compare-carousel {
+  display: grid;
+  grid-auto-columns: minmax(218px, 78%);
+  grid-auto-flow: column;
+  gap: 10px;
+  overflow-x: auto;
+  overscroll-behavior-x: contain;
+  scroll-snap-type: x mandatory;
+  scrollbar-width: none;
+  margin: 12px -14px 0;
+  padding: 0 14px 3px;
+}
+
+.compare-carousel::-webkit-scrollbar {
+  display: none;
+}
+
+.compare-item {
+  scroll-snap-align: start;
+  min-height: 168px;
+  padding: 12px;
+  border: 1px solid #edf1ee;
+  border-radius: 16px;
+  background: #f8fbf9;
+}
+
+.score-row {
+  display: grid;
+  grid-template-columns: 38px 1fr 28px;
+  gap: 8px;
+  align-items: center;
+  margin-top: 7px;
+}
+
+.score-row span,
+.score-row strong {
+  font-size: 12px;
+  font-weight: 820;
+}
+
+.score-row span {
+  color: var(--muted);
+}
+
+.score-row strong {
+  color: var(--ink);
+  text-align: right;
+}
+
+.score-track {
+  overflow: hidden;
+  height: 9px;
+  border-radius: 99px;
+  background: #e6ece8;
+}
+
+.score-track i {
+  display: block;
+  height: 100%;
+  border-radius: inherit;
+  background: #8fa29b;
+}
+
+.yunnan-score .score-track i {
+  background: var(--green);
+}
+
+.compare-item p {
+  margin-top: 9px;
+}
+
+.compare-conclusion {
+  margin-top: 12px;
+  padding: 12px;
+  border-radius: 15px;
+  background: linear-gradient(135deg, var(--green-soft), #fffaf0);
+}
+
+.compare-conclusion strong {
+  display: block;
+  margin-bottom: 6px;
+  font-size: 14px;
+}
+
+.inline-action,
+.ghost-action,
+.primary-action {
+  min-height: 36px;
+  border-radius: 13px;
+  font-size: 13px;
+  font-weight: 820;
+}
+
+.inline-action {
+  width: 100%;
+  margin-top: 10px;
+  border: 1px solid #d8e7e1;
+  background: var(--green-soft);
+  color: var(--green);
+}
+
+.card-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-top: 12px;
+}
+
+.primary-action,
+.ghost-action {
+  flex: 1 1 auto;
+  padding: 0 12px;
+}
+
+.primary-action {
+  border: none;
+  background: var(--green);
+  color: #fff;
+}
+
+.ghost-action {
+  border: 1px solid var(--line);
+  background: #fff;
+  color: var(--ink);
+}
+
+.reason-list {
+  display: grid;
+  gap: 8px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.reason-list li {
+  padding-left: 18px;
+  color: var(--muted);
+  font-size: 13px;
+  line-height: 1.5;
+  position: relative;
+}
+
+.reason-list li::before {
+  content: "";
+  position: absolute;
+  top: 8px;
+  left: 3px;
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: var(--green);
+}
+
+.option-item p {
+  margin-bottom: 8px;
+}
+
+.option-item button {
+  min-height: 34px;
+  padding: 0 10px;
+  border: none;
+  border-radius: 12px;
+  background: #fff;
+  color: var(--green);
+  font-size: 12px;
+  font-weight: 820;
+}
+
+.ai-card details {
+  margin-top: 10px;
+  border-top: 1px solid #edf1ee;
+  padding-top: 10px;
+}
+
+.ai-card summary {
+  cursor: pointer;
+  color: var(--green);
+  font-size: 13px;
+  font-weight: 820;
+  list-style: none;
+}
+
+.ai-card summary::-webkit-details-marker {
+  display: none;
+}
+
+.ai-card details ul,
+.check-list {
+  margin: 10px 0 0;
+  padding: 0;
+  list-style: none;
+}
+
+.ai-card details li,
+.check-list label {
+  display: block;
+  margin-top: 7px;
+  color: var(--muted);
+  font-size: 13px;
+  line-height: 1.45;
+}
+
+.check-list label {
+  display: grid;
+  grid-template-columns: 18px 1fr;
+  gap: 8px;
+  align-items: start;
+}
+
+.cost-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 8px;
+}
+
+.cost-grid span {
+  color: var(--muted);
+  font-size: 12px;
+  line-height: 1.4;
+}
+
+.memory-confirm {
+  display: grid;
+  gap: 10px;
+}
+
+.memory-confirm[hidden] {
+  display: none;
+}
+
+.memory-confirm label {
+  display: grid;
+  grid-template-columns: 18px 1fr;
+  gap: 8px;
+  align-items: start;
+  padding: 10px;
+  border: 1px solid #edf1ee;
+  border-radius: 14px;
+  background: #f8fbf9;
+  color: var(--muted);
+  font-size: 13px;
+  line-height: 1.45;
+}
+
 .source-list em {
   color: var(--muted);
   font-size: 12px;
@@ -655,7 +1021,7 @@ p {
 
 .mode-strip {
   display: flex;
-  gap: 10px;
+  gap: 6px;
   overflow-x: auto;
   padding-bottom: 2px;
   scrollbar-width: none;
@@ -667,15 +1033,15 @@ p {
 
 .mode-strip button {
   flex: 0 0 auto;
-  min-height: 42px;
-  padding: 0 15px;
+  min-height: 24px;
+  padding: 0 8px;
   border: 1px solid #e7ebe8;
-  border-radius: 16px;
+  border-radius: 10px;
   background: #fff;
   color: #2c332f;
-  font-size: 15px;
+  font-size: 12px;
   font-weight: 760;
-  box-shadow: 0 8px 18px rgba(24, 37, 32, 0.04);
+  box-shadow: 0 4px 10px rgba(24, 37, 32, 0.03);
 }
 
 .mode-strip button.is-active {
